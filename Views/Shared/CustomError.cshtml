@@ -1,0 +1,28 @@
+﻿@model System.Web.Mvc.HandleErrorInfo
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Error</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+    <div class="p-3">
+
+        <hgroup>
+            <h1>Error.</h1>
+            <h2>An error occurred while processing your request.</h2>
+        </hgroup>
+        <br />
+        <a href="@Url.Action("Home","Home")" class="btn btn-info w-35">Back to Home</a>
+    </div>
+</body>
+</html>

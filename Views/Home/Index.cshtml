@@ -1,0 +1,74 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/ValidationFunctions.js"></script>
+    <link href="~/Content/index.css" rel="stylesheet" />
+    <script type='text/javascript'>
+        var appInsights=window.appInsights||function(config)
+        {
+            function r(config) {
+            t[config] = function () {
+                var i = arguments;
+                t.queue.push(function () {
+                    t[config].apply(t, i)
+                })
+            }
+            }
+            var t = { config:config},u=document,e=window,o='script',s=u.createElement(o),i,f;for(s.src=config.url||'//az416426.vo.msecnd.net/scripts/a/ai.0.js',u.getElementsByTagName(o)[0].parentNode.appendChild(s),t.cookie=u.cookie,t.queue=[],i=['Event','Exception','Metric','PageView','Trace','Ajax'];i.length;)r('track'+i.pop());return r('setAuthenticatedUserContext'),r('clearAuthenticatedUserContext'),config.disableExceptionTracking||(i='onerror',r('_'+i),f=e[i],e[i]=function(config, r, u, e, o) { var s = f && f(config, r, u, e, o); return s !== !0 && t['_' + i](config, r, u, e, o),s}),t
+        }({
+            instrumentationKey:'6507f010-e038-49a8-83f7-f4cee33606d9'
+            });
+
+
+        window.appInsights=appInsights;
+        appInsights.trackPageView();
+
+
+    </script>
+</head>
+<body>
+
+
+    <div class="sidenav">
+        <div class="login-main-text">
+            <h2>Hotel Check-In<br> Management System</h2>
+        </div>
+    </div>
+    <div class="main">
+        <div class="col-md-6 col-sm-12">
+            <div class="login-form">
+                @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+                {
+                    <form>
+                        <div class="form-group">
+                            <label>User Name</label>
+                            <input type="text" class="form-control" id="UserName" placeholder="Enter UserName" name="UserName">
+                            <span class="ml-2 text-danger" id="UserNameError"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" class="form-control" id="Password" placeholder="Enter password" name="Password">
+                            <span class="ml-2 text-danger" id="PasswordError"></span>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="Login">Login</button><br />
+                        <label class="ml-2 text-danger" id="InvalidError">@ViewBag.ErrorMessage</label>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+﻿@using Hotel.Check_In.Management.Models
+@{
+    ViewBag.Title = "AddBooking";
+    Layout = "~/Views/Shared/_HotelLayout.cshtml";
+}
+
+    <div class="container">
+        <div class="container p-2">
+            <h1>Add Booking Details</h1>
+            <p>Please fill all the details.</p>
+            <hr>
+        </div>
+        @using (Html.BeginForm("AddBooking", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="CheckInDate">Check-In Date:</label>
+                        <input type="text" class="form-control" id="CheckInDate" placeholder="" name="CheckInDate">
+                        <label id="CheckInDateError" class="text-danger"></label>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                        <label for="CheckOutDate">Check-Out Date</label>
+                        <input type="text" class="form-control" id="CheckOutDate" placeholder="" name="CheckOutDate">
+                        <label id="CheckOutDateError" class="text-danger"></label>
+                    </div>
+                </div>
+                <div class="col-lg-12"></div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="CheckInStatus">Check-In Status:</label>
+                        <select class="form-control" id="CheckInStatus" name="CheckInStatus">
+                            <option>Free</option>
+                            <option>Occupied</option>
+                            <option>Reserved</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                        <label for="PaymentStatus">Payment Status</label>
+                        <select class="form-control" id="PaymentStatus" name="PaymentStatus">
+                            <option value="Paid">Paid</option>
+                            <option value="NotPaid">Not Paid</option>
+                        </select>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="AdvancePaid">Advance Paid:</label>
+                        <input type="text" class="form-control" id="AdvancePaid" placeholder="" name="AdvancePaid">
+                        <label id="AdvancePaidError" class="text-danger"></label>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                        <label for="TotalAmountPaid">Amount Paid</label>
+                        <input type="text" class="form-control" id="TotalAmountPaid" placeholder="" name="TotalAmountPaid">
+                        <label id="TotalAmountPaidError" class="text-danger"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="TotalAmountToBePaid">Total Amount To Be Paid</label>
+                        <input type="text" class="form-control" id="TotalAmountToBePaid" placeholder="" name="TotalAmountToBePaid" value="@ViewBag.TotalAmountToBePaid">
+                        <label id="TotalAmountToBePaidError" class="text-danger"></label>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                        <label for="RoomNo">Room No:</label>
+                        <select class="form-control" id="RoomNo" name="RoomNo" onchange="">
+                            @foreach (var item in ViewBag.RoomNumbers as List<Rooms>)
+                            {
+                                <option>@item.RoomNo</option>
+                            }
+                        </select>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="Name">Customer Name</label>
+                        <input type="text" class="form-control" id="Name" placeholder="" name="Name">
+                        <label id="NameError" class="text-danger"></label>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                        <label for="Address">Customer Address</label>
+                        <textarea class="form-control" name="Address" id="Address"></textarea>
+                        <label id="AddressError" class="text-danger"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label for="Gender">Gender</label>
+                        <select class="form-control" id="Gender" name="Gender">
+                            <option>Male</option>
+                            <option>Female</option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2"></div>
+                    <div class="col-lg-4">
+                        <label for="IdProof">Government Issued ID Proof picture</label>
+                        <input type="file" name="photo" class="form-control" id="photo" />
+                        <label id="PhotoError" class="text-danger"></label>
+                        @*<input type="text" class="form-control" id="IdProof" placeholder="" name="IdProof">*@
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <input type="submit" class="btn btn-info mt-2 w-30" value="Submit" id="SubmitBooking" />
+                    </div>
+                </div>
+
+            </div>
+            <br />
+        }
+    </div>
+

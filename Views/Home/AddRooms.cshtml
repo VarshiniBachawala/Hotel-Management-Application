@@ -1,0 +1,49 @@
+﻿@using Hotel.Check_In.Management.Models;
+@{
+    ViewBag.Title = "AddRooms";
+    Layout = "~/Views/Shared/_HotelLayout.cshtml";
+}
+
+<div class="container">
+    @using (Html.BeginForm("AddRooms", "Home"))
+    {
+
+        <div class="container p-2">
+            <h1>Add Room Details</h1>
+            <p>Please fill all the details.</p>
+            <hr>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="RoomNo">RoomNo</label>
+                <input type="text" class="form-control" id="RoomNo" placeholder="" name="RoomNo" />
+                <label class="text-danger" id="RoomNoError"></label>
+            </div>
+            <div class="col-lg-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="RoomType">Room Type</label>
+                <select class="form-control" id="RoomType" name="RoomType">
+                    <option value="Single">Single</option>
+                    <option value="Double">Double</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="Price">Price</label>
+                <input type="text" class="form-control" id="Price" placeholder="" name="Price" />
+                <label class="text-danger" id="PriceError"></label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <input type="submit" value="Add" name="command" id="Add" class="btn btn-success m-2" />
+                <input type="submit" value="Cancel" name="command" id="Cancel" class="btn btn-info m-2" />
+            </div>
+        </div>
+
+    }
+</div>
+

@@ -1,0 +1,103 @@
+﻿@using Hotel.Check_In.Management.Models
+@model Booking
+@{
+    ViewBag.Title = "UpdateBookings";
+    Layout = "~/Views/Shared/_HotelLayout.cshtml";
+}
+
+<div class="container p-2">
+    <h1>Update Booking Details</h1>
+    <p>Update your booking details here.</p>
+    <hr>
+</div>
+
+@using (Html.BeginForm("UpdateBookings", "Home", FormMethod.Post))
+{
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="CheckOutDate">Check-Out Date</label>
+                <input type="text" class="form-control" id="CheckOutDate" placeholder="" name="CheckOutDate" value="@Model.CheckOutDate">
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+                <label for="PaymentStatus">Payment Status</label>
+                <select class="form-control" id="PaymentStatus" name="PaymentStatus">
+                    <option value="Paid" @(Model.PaymentStatus == "Paid" ? "selected='selected'" : "")>Paid</option>
+                    <option value="NotPaid" @(Model.PaymentStatus == "NotPaid" ? "selected='selected'" : "")>Not Paid</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-lg-12"></div>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="CheckInStatus">Check-In Status:</label>
+                <select class="form-control" id="CheckInStatus" name="CheckInStatus">
+                    <option value="Free" @(Model.CheckInStatus == "Free" ? "selected='selected'" : "")>Free</option>
+                    <option value="Occupied" @(Model.CheckInStatus == "Occupied" ? "selected='selected'" : "")>Occupied</option>
+                    <option value="Reserved" @(Model.CheckInStatus == "Reserved" ? "selected='selected'" : "")>Reserved</option>
+                </select>
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+                <label for="AdvancePaid">Advance Paid:</label>
+                <input type="text" class="form-control" id="AdvancePaid" placeholder="" name="AdvancePaid" value="@Model.AdvancePaid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="TotalAmountPaid">Amount Paid</label>
+                <input type="text" class="form-control" id="TotalAmountPaid" placeholder="" name="TotalAmountPaid" value="@Model.TotalAmountPaid">
+
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+                <label for="TotalAmountToBePaid">Total Amount</label>
+                <input type="text" class="form-control" id="TotalAmountToBePaid" placeholder="" name="TotalAmountToBePaid" value="@Model.TotalAmountToBePaid">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                @{
+                    int balance = Model.TotalAmountToBePaid - Model.TotalAmountPaid;
+                    <label for="BalanceAmount">Balance Amount</label>
+                    <input type="text" class="form-control" id="BalanceAmount" placeholder="" name="" disabled value="@balance">
+                }
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+                <label for="RoomNo">Room No:</label>
+                <select class="form-control" id="RoomNo" name="RoomNo">
+                    @foreach (var item in ViewBag.RoomNumbers as List<Rooms>)
+                    {
+                        <option value="@item.RoomNo" @(item.RoomNo == Model.RoomNo ? "selected='selected'" : "")>@item.RoomNo</option>
+                    }
+                </select>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4">
+                <label for="Name">Customer Name</label>
+                <input type="text" class="form-control" id="Name" placeholder="" name="Name" value="@Model.Name">
+            </div>
+            <div class="col-lg-2"></div>
+            <div class="col-lg-4">
+                <label for="Address">Customer Address</label>
+                <textarea class="form-control" name="Address" id="Address">@Model.Address</textarea>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <input type="hidden" name="CheckInId" id="CheckInId" value="@Model.CheckInId" />
+                <input type="hidden" name="CustomerId" id="CustomerId" value="@Model.CustomerId" />
+                <input type="submit" class="btn btn-success mt-2 w-30" value="Update" name="command" />
+                <input type="submit" class="btn btn-success mt-2 w-30" value="Cancel" name="command" />
+            </div>
+        </div>
+
+    </div>
+}
+

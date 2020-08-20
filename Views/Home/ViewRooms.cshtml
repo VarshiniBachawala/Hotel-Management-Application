@@ -1,0 +1,92 @@
+﻿@using Hotel.Check_In.Management.Models;
+@{
+    ViewBag.Title = "ViewRooms";
+    Layout = "~/Views/Shared/_HotelLayout.cshtml";
+}
+
+    <div class="container">
+        @{
+            if (ViewBag.edit == true)
+            {
+                using (Html.BeginForm("ViewRooms", "Home"))
+                {
+                    <div class="container p-2">
+                        <h1>Update Rooms</h1>
+                        <p></p>
+                        <hr>
+                    </div>
+                    <div class="w3-container">
+                        <h3>Update Rooms</h3>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label>@ViewBag.RoomNo</label>
+
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="RoomType">Room Type</label>
+                                <select class="form-control" id="RoomType" name="RoomType">
+                                    <option value="Single" @(ViewBag.RoomType == "Single" ? "selected='selected'" : "")>Single</option>
+                                    <option value="Double" @(ViewBag.RoomType == "Double" ? "selected='selected'" : "")>Double</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+                                <label for="Price">Price</label>
+                                <input type="text" class="form-control" id="Price" placeholder="" name="Price" value="@ViewBag.Price" />
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-4">
+
+                                <input type="hidden" name="RoomNo" id="RoomNo" value="@ViewBag.RoomNo" />
+                                <input type="submit" value="Update" name="command" id="Update" class="btn btn-success" />
+                                <input type="submit" value="Cancel" name="command" id="Cancel" class="btn btn-info" />
+
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
+            else
+            {
+                <div class="container p-2">
+                    <h1>View Rooms</h1>
+                    <p></p>
+                    <hr>
+                </div>
+                <div class="w3-container">
+                    <h5>Rooms List</h5>
+                    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+                        <tr>
+                            <th>Room Number</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Action</th>
+                        </tr>
+                        @foreach (var item in ViewBag.RoomsList as List<Rooms>)
+                        {
+                            <tr>
+                                <td>@item.RoomNo</td>
+                                <td>@item.RoomType</td>
+                                <td>@item.Price</td>
+                                <td>
+                                    @using (Html.BeginForm("ViewRooms", "Home"))
+                                    {
+                                        <input type="hidden" name="ViewRoomId" id="ViewRoomId" value="@item.RoomId" />
+                                        <input type="submit" value="Edit" name="command" id="Edit" class="btn btn-success" />
+                                        <input type="submit" value="Delete" name="command" id="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');" />
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                    <br>
+                </div>
+            }
+        }
+
+    </div>
+

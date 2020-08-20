@@ -1,0 +1,63 @@
+﻿@using Hotel.Check_In.Management.Models
+@{
+    ViewBag.Title = "ViewCheckOuts";
+    Layout = "~/Views/Shared/_HotelLayout.cshtml";
+}
+
+<div class="w3-container p-2">
+    <h3>Overall Check-Outs</h3>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+        <tr>
+            <th>Customer Name</th>
+            <th>RoomNo</th>
+            <th>CheckInDate</th>
+            <th>CheckOutDate</th>
+            <th>Amount Paid</th>
+            <th>Balance To Pay</th>
+        </tr>
+        @foreach (var item in ViewBag.OverallCheckOuts as List<Booking>)
+        {
+            int balance = item.TotalAmountToBePaid - item.TotalAmountPaid;
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.RoomNo</td>
+                <td>@item.CheckInDate</td>
+                <td>@item.CheckOutDate</td>
+                <td>@item.TotalAmountPaid</td>
+                <td>@balance</td>
+            </tr>
+        }
+    </table>
+    <br>
+
+</div>
+<br />
+<div class="w3-container">
+    <h3>Today Check-Outs</h3>
+    <table class="w3-table w3-striped w3-bordered w3-border w3-hoverable w3-white">
+        <tr>
+            <th>Customer Name</th>
+            <th>RoomNo</th>
+            <th>CheckInDate</th>
+            <th>CheckOutDate</th>
+            <th>Amount Paid</th>
+            <th>Balance To Pay</th>
+        </tr>
+        @foreach (var item in ViewBag.TodayCheckOuts as List<Booking>)
+        {
+            int balance = item.TotalAmountToBePaid - item.TotalAmountPaid;
+            <tr>
+                <td>@item.Name</td>
+                <td>@item.RoomNo</td>
+                <td>@item.CheckInDate</td>
+                <td>@item.CheckOutDate</td>
+                <td>@item.TotalAmountPaid</td>
+                <td>@balance</td>
+            </tr>
+        }
+    </table>
+    <br>
+
+</div>
+
+
